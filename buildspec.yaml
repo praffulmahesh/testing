@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+  build:
+    commands:
+      - echo Building...
+      - echo Build success!
+
+reports:
+  report-group-name:
+    files:
+      - '**/*'
