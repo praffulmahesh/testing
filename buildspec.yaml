@@ -8,6 +8,10 @@ phases:
     commands:
       - echo Building...
       - echo Build success!
+      - echo Testing...
+      - echo Test success!
+      - echo Deploying...
+      -echo Deploy success!
 
 reports:
   report-group-name:
