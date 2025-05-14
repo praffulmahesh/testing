@@ -2,17 +2,22 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      # Not specifying Go — will install manually
+      python: 3.x  # Just to enable standard Ubuntu image
     commands:
-      - echo Installing dependencies...
+      - echo "Installing Go..."
+      - curl -OL https://golang.org/dl/go1.20.12.linux-amd64.tar.gz
+      - sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.20.12.linux-amd64.tar.gz
+      - export PATH=$PATH:/usr/local/go/bin
+      - go version
   build:
     commands:
-      - echo Building...
-      - echo Build success!
-      - echo Testing...
-      - echo Test success!
-      - echo Deploying...
-
-reports:
-  report-group-name:
-    files:
-      - '**/*'
+      - echo "Building the Go service..."
+      - go build -v ./...
+  post_build:
+    commands:
+      - echo "Build complete"
+artifacts:
+  files:
+    - '**/*'
